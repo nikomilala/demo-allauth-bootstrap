@@ -4,15 +4,15 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, UserM
 from django.core.mail import send_mail
 from django.db import models
 from django.dispatch import receiver
+from django.urls import reverse
 from django.utils import timezone
 from six import python_2_unicode_compatible
-from django.utils.http import urlquote
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 try:
-    from django.utils.encoding import force_text
+    from django.utils.encoding import force_str as force_text
 except ImportError:
-    from django.utils.encoding import force_unicode as force_text
+    from django.utils.encoding import force_str as force_text
 from allauth.account.signals import user_signed_up
 
 
@@ -75,7 +75,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_absolute_url(self):
         # TODO: what is this for?
-        return "/users/%s/" % urlquote(self.email)  # TODO: email ok for this? better to have uuid?
+        # get uuid from userprofile
+        return reverse('account_profile', kwargs={'email': self.email})
 
     @property
     def name(self):
