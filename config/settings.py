@@ -166,3 +166,5 @@ SOCIALACCOUNT_PROVIDERS = {
          'AUTH_PARAMS': {'access_type': 'online'}
          },
 }
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
