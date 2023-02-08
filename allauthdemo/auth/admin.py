@@ -3,12 +3,12 @@ from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 # from django.utils.html import format_html_join
 # from django.utils.safestring import mark_safe
 # from django.utils.encoding import python_2_unicode_compatible
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 try:
-    from django.utils.encoding import force_text
+    from django.utils.encoding import force_str as force_text
 except ImportError:
-    from django.utils.encoding import force_unicode as force_text
+    from django.utils.encoding import force_str as force_text
 
 from .models import User, UserProfile
 from .forms import UserAdminForm
